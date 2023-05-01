@@ -11,7 +11,11 @@
     <Style BasedOn="{StaticResource DefaultTabViewStyle}" TargetType="muxc:TabView" />
     <Style x:Key="DefaultTabViewStyle" TargetType="muxc:TabView">
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="Padding" Value="0" />
+        <Setter Property="Padding">
+            <Setter.Value>
+                <Thickness>0,-10,0,0</Thickness>
+            </Setter.Value>
+        </Setter>
         <Setter Property="IsTabStop" Value="True" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="KeyboardAcceleratorPlacementMode" Value="Hidden" />
@@ -60,6 +64,7 @@
                             <primitives:TabViewListView
                                 Grid.Column="1"
                                 x:Name="TabListView"
+                                Margin="0"
                                 Padding="{TemplateBinding Padding}"
                                 CanReorderItems="{TemplateBinding CanReorderTabs}"
                                 CanDragItems="{TemplateBinding CanDragTabs}"
