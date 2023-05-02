@@ -1,0 +1,24 @@
+name: Build and Release5
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up MSBuild
+        uses: microsoft/setup-msbuild@v1.0.2
+      
+      - name: Build with MSBuild
+        run: |
+          msbuild /t:restore /t:build /p:Platform=x64 /p:Configuration=Release /p:AppxBundlePlatforms="x64" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=Release /p:PackageCertificateKeyFile=D:\a\lsatax\lsatax\BiliLite.UWP\App_TemporaryKey.pfx /p:AppxPackageDir=D:\a\lsatax\lsatax\output\bin
+
+      - name: Upload
+        uses: actions/upload-artifact@v3.1.1
+        with:
+          name: "test"
+          path: D:\a\lsatax\lsatax\output\
